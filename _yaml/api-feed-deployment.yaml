@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: api-feed-svc
+  name: api-feed-svc
+spec:
+  selector:
+    matchLabels:
+      app: api-feed-svc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        service: api-feed-svc
+        app: api-feed-svc
+    spec:
+      containers:
+      - image: chk86/cdnd-03-ms-feed:latest
+        name: api-feed-svc
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        env:
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_HOST
+              name: envdata
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: URL
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: AWS_BUCKET
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: AWS_PROFILE
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: AWS_REGION
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: JWT_SECRET
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_DB
+              name: envdata
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_PASSWORD
+              name: envdata
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_USERNAME
+              name: envdata
+        volumeMounts:
+        - name: envaws
+          mountPath: "/root/.aws/"
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: envaws
+        secret:
+          secretName: envaws

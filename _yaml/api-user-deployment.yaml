@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: api-user-svc
+  name: api-user-svc
+spec:
+  selector:
+    matchLabels:
+      app: api-user-svc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        service: api-user-svc
+        app: api-user-svc
+    spec:
+      containers:
+      - image: chk86/cdnd-03-ms-user:latest
+        name: api-user-svc
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: POSTGRES_HOST
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: POSTGRES_USERNAME
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: URL
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: envdata
+              key: JWT_SECRET
+
+      restartPolicy: Always

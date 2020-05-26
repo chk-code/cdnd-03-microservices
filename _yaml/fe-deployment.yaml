@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: fe-svc
+  name: fe-svc
+spec:
+  selector:
+    matchLabels:
+      app: fe-svc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        service: fe-svc
+        app: fe-svc
+        api: external
+    spec:
+      containers:
+      - image: chk86/cdnd-03-ms-fe:latest
+        name: fe-svc
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      restartPolicy: Always

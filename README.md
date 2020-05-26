@@ -1,10 +1,52 @@
-# Udagram Image Filtering Application
+# CDND 03 - Project "Refactor Monolith to Microservices"
 
+## Monolith: Udagram Image Filtering Application
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
 The project is split into two parts:
 1. Frontend - Angular web application built with Ionic Framework
 2. Backend RESTful API - Node-Express application
+
+## Key Achievements:
+
+1. Refactor the API
+Decompose the API code to have two separate projects that can be run independent of one another: /users and /feed endpoints.
+
+2. Containerize the Code
+Create Dockerfiles for the frontend and backend applications.
+
+![DockerImages](screenshots/DockerHub.png)
+
+3. Build CICD Pipeline
+Set up GitHub account to integrate with Travis CI and generate a build pipeline.
+
+![TravisCI](screenshots/TravisCI.png)
+
+4. Deploy to Kubernetes
+Deploy the Docker containers for the API applications and web application as their own pods in AWS EKS.
+
+![KubernetesPods](screenshots/KUBECTL_getPods.png)
+
+5. Set up Kubernetes Services
+Configure a reverse proxy to direct requests to the appropriate backend and frontend loadbalancer
+
+![KubernetesServices](screenshots/KUBECTL_describeServices.png)
+
+6. Self Healing HPA
+Configure Kubernetes deployments to recover from failure.
+
+![KubernetesHPA](screenshots/KUBECTL_getHpa.png)
+
+7. Log files
+Check logfiles for debugging.
+![KubernetesLogsBackend](screenshots/KUBECTL_logsBackend.png)
+![KubernetesLogsFrontend](screenshots/KUBECTL_logsFrontend.png)
+
+
+
+
+
+# Project Task
 
 ## Getting Started
 > _tip_: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
@@ -14,7 +56,7 @@ The project is split into two parts:
 2. Environment variables will need to be set. These environment variables include database connection details that should not be hard-coded into the application code.
 #### Environment Script
 A file named `set_env.sh` has been prepared as an optional tool to help you configure these variables on your local development environment.
- 
+
 We do _not_ want your credentials to be stored in git. After pulling this `starter` project, run the following command to tell git to stop tracking the script in git but keep it stored locally. This way, you can use the script for your convenience and reduce risk of exposing your credentials.
 `git rm --cached set_env.sh`
 
