@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: rp-svc
+  name: rp-svc
+spec:
+  selector:
+    matchLabels:
+      app: rp-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: rp-svc
+        app: rp-svc
+    spec:
+      containers:
+      - image: chk86/cdnd-03-ms-rp:latest
+        name: rp-svc
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always

@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "90c44738-86d0-440c-ac60-dcb7b70fb9e8",
+		"_postman_id": "4b56d824-ea6f-4335-85eb-1eaf069514cb",
 		"name": "udagram-api",
-		"description": "Feed and User API",
+		"description": "Requests that should work!",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -15,7 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "f7f018b8-d11b-4cc7-9fa6-eb1683d38542",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -37,10 +37,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed",
 							"host": [
@@ -62,7 +58,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "54108a00-e410-46e8-9290-4d99ff4a634c",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -84,10 +80,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed/:id",
 							"host": [
@@ -121,10 +113,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{host}}/api/v0/feed/:id",
 									"host": [
@@ -191,10 +179,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4fa0ec55-4fb1-4eda-a7a3-08af62324ede",
+								"id": "af338470-308f-4586-9f5e-ce41c13ae63e",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
 									"});",
 									"",
 									"pm.test(\"A single item is returned\", function () {",
@@ -222,7 +210,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"hello@gmail.com\",\n\t\"password\":\"fancypass\"\n}"
+							"raw": "{\n\t\"email\":\"ck1@mail.com\",\n\t\"password\":\"testpass2\"\n}"
 						},
 						"url": {
 							"raw": "{{host}}/api/v0/users/auth",
@@ -245,7 +233,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b3737edc-f79e-4823-b2c5-e84e6359e173",
+								"id": "6736ef39-7b42-4e00-acbe-224aa458e4ef",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -300,7 +288,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5524b249-cd4d-4e75-91c4-b2f690d53d44",
+								"id": "89d8c0f5-72e3-4d85-a0c6-feda40a7e44f",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -359,7 +347,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "41cd51df-9472-4d8d-9177-b4f54d6a8530",
+								"id": "5ff49ab1-4a99-40fe-ac63-91478a2168c6",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -409,7 +397,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Unauthorized",
@@ -420,7 +409,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "adf488c8-5176-47b3-adee-08229fa2146b",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -456,7 +445,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Authorized",
@@ -467,7 +457,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "88f5534d-1063-4499-b08e-440b07fe0c66",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -521,7 +511,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "dc1964cd-7b24-41e4-bc2d-aec6dff6489b",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -584,7 +574,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "65e7c108-0985-4ca7-9613-0898f005cf76",
+						"id": "16c969fe-e690-4abf-a225-bae317eb9d91",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -594,21 +584,22 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cf28f76e-ffbb-4199-b636-1c080a86e465",
+						"id": "29c093fe-d015-4b74-aec7-ea03afd94ce5",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "bc5d9c7a-7a6b-49ed-af16-206e17e8732f",
+				"id": "f32c54fb-e2e8-4edd-9dbe-aa61d5963f76",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -618,7 +609,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a7cb0174-2461-42e2-979e-1b5922eea0fe",
+				"id": "4f96ebe6-581a-4f0a-ad5f-04c3d3f19fea",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -628,10 +619,25 @@
 	],
 	"variable": [
 		{
-			"id": "3e3ea131-5328-4f50-8fe1-516e3995917d",
-			"key": "host",
+			"id": "2c19b626-6a5d-43c3-9dc4-86cd115626f3",
+			"key": "lhost",
 			"value": "http://localhost:8080",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "5d53a250-2fd5-4f81-8364-24cc36cb1361",
+			"key": "host",
+			"value": "http://a060fc0802c974895903d71661f4c4a1-1226631261.eu-central-1.elb.amazonaws.com:8080",
 			"type": "string"
+		},
+		{
+			"id": "4c9ce69b-a4f7-4694-8754-40e7b2924460",
+			"key": "fe-host",
+			"value": "http://a2d237365560043899e8cddd1978de8d-1670782240.eu-central-1.elb.amazonaws.com:8100/",
+			"type": "string",
+			"disabled": true
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

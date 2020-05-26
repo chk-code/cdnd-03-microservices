@@ -1,0 +1,12 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/chk-code/cdnd-03-ms-fe
+[submodule "reverseproxy"]
+	path = reverseproxy
+	url = https://github.com/chk-code/cdnd-03-ms-rp
+[submodule "backend-user"]
+	path = backend-user
+	url = https://github.com/chk-code/cdnd-03-ms-user
+[submodule "backend-feed"]
+	path = backend-feed
+	url = https://github.com/chk-code/cdnd-03-ms-feed
