@@ -1,17 +1,26 @@
 # CDND 03 - Project "Refactor Monolith to Microservices"
-
-## Monolith: Udagram Image Filtering Application
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
+## Monolith: Udagram Image Filtering Application
 The project is split into two parts:
 1. Frontend - Angular web application built with Ionic Framework
 2. Backend RESTful API - Node-Express application
 
 ## Key Achievements:
 
-1. a) Refactor the API
+This projects consists of 4 repos:
+* ![Frontend](https://github.com/chk-code/cdnd-03-ms-fe)
+* ![BackendFeed](https://github.com/chk-code/cdnd-03-ms-feed)
+* ![BackendUser](https://github.com/chk-code/cdnd-03-ms-user)
+* ![ReverseProxy](https://github.com/chk-code/cdnd-03-ms-rp)
+Every repo has its own TravisCI Pipeline.
+
+1. Setup
+
+a) Refactor the API
 Decompose the API code to have two separate projects that can be run independent of one another: /users and /feed endpoints.
-1. b) Deploying a Kubernetes Cluster with Amazon EKS [Helpful Link](https://logz.io/blog/amazon-eks-cluster/)
+
+b) Deploying a Kubernetes Cluster with Amazon EKS [Helpful Link](https://logz.io/blog/amazon-eks-cluster/)
 Add VPC at the Console
 Add a new cluster over the console:
 
@@ -19,13 +28,10 @@ aws eks --region eu-central-1 create-cluster --name cdnd03ms
 --role-arn arn:aws:iam::AWSACCOUNT:role/eks-access-udacity --resources-vpc-config
 subnetIds=subnet-id1,subnet-id2,subnet-id3,securityGroupIds=sg-id
 
-aws eks --region eu-central-1 update-kubeconfig --name CDND-03-MS
-
 aws eks --region eu-central-1 update-kubeconfig --name cdnd03ms
 
 curl -O https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-01-09/aws-auth-cm.yaml
 arn:aws:iam::AWSACCOUNT:role/cdnd03ms-workernodes-NodeInstanceRole-VO8LLABLXEB5
-
 
 
 2. Containerize the Code
@@ -110,20 +116,3 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
     ionic serve
     ```
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
-
-## Tips
-1. Take a look at `udagram-api` -- does it look like we can divide it into two modules to be deployed as separate microservices?
-2. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
-3. It's useful to "lint" your code so that changes in the codebase adhere to a coding standard. This helps alleviate issues when developers use different styles of coding. `eslint` has been set up for TypeScript in the codebase for you. To lint your code, run the following:
-    ```bash
-    npx eslint --ext .js,.ts src/
-    ```
-    To have your code fixed automatically, run
-    ```bash
-    npx eslint --ext .js,.ts src/ --fix
-    ```
-4. Over time, our code will become outdated and inevitably run into security vulnerabilities. To address them, you can run:
-    ```bash
-    npm audit fix
-    ```
-5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
