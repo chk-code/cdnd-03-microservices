@@ -9,8 +9,24 @@ The project is split into two parts:
 
 ## Key Achievements:
 
-1. Refactor the API
+1. a) Refactor the API
 Decompose the API code to have two separate projects that can be run independent of one another: /users and /feed endpoints.
+1. b) Deploying a Kubernetes Cluster with Amazon EKS [Helpful Link](https://logz.io/blog/amazon-eks-cluster/)
+Add VPC at the Console
+Add a new cluster over the console:
+
+aws eks --region eu-central-1 create-cluster --name cdnd03ms
+--role-arn arn:aws:iam::AWSACCOUNT:role/eks-access-udacity --resources-vpc-config
+subnetIds=subnet-id1,subnet-id2,subnet-id3,securityGroupIds=sg-id
+
+aws eks --region eu-central-1 update-kubeconfig --name CDND-03-MS
+
+aws eks --region eu-central-1 update-kubeconfig --name cdnd03ms
+
+curl -O https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-01-09/aws-auth-cm.yaml
+arn:aws:iam::AWSACCOUNT:role/cdnd03ms-workernodes-NodeInstanceRole-VO8LLABLXEB5
+
+
 
 2. Containerize the Code
 Create Dockerfiles for the frontend and backend applications.
@@ -41,9 +57,6 @@ Configure Kubernetes deployments to recover from failure.
 Check logfiles for debugging.
 ![KubernetesLogsBackend](screenshots/KUBECTL_logsBackend.png)
 ![KubernetesLogsFrontend](screenshots/KUBECTL_logsFrontend.png)
-
-
-
 
 
 # Project Task
